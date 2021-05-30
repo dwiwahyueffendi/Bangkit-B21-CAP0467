@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">CapstoneProject</string>
+    <string name="app_name">LAPORin</string>
+    <string name="login">Login</string>
+    <string name="login_account">Login to your Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="already_have_account">Have an account already?</string>
+    <string name="new_user">New user?</string>
+    <string name="create_account">Create an Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="register">Register</string>
+    <string name="register_title_1">Create</string>
+    <string name="register_title_2">Your Account</string>
+    <string name="fill_input">Please fill the input below here</string>
+
 </resources>
