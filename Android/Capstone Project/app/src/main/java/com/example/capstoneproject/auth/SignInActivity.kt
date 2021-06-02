@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.example.capstoneproject.NavigasiActivity
-import com.example.capstoneproject.view.HomeFragment
 import com.example.capstoneproject.R
 import com.example.capstoneproject.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -49,7 +48,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         val btnRegister: TextView = findViewById(R.id.btn_signin_Register)
-        btnRegister.setOnClickListener(this@SignInActivity)
+        btnRegister.setOnClickListener(this)
 
         binding.btnSigninForgotPassword.setOnClickListener {
             val intent = Intent(this@SignInActivity, ResetPasswordActivity::class.java)
@@ -66,15 +65,17 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener(this){
-                if(it.isSuccessful){
+            .addOnCompleteListener{ task ->
+                if(task.isSuccessful){
+
+
                     Toast.makeText(this, "Login is Successful !", Toast.LENGTH_SHORT).show()
                     Intent(this, NavigasiActivity::class.java).also { intent ->
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
                 }else{
-                    Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }
             }
     }
