@@ -1,0 +1,21 @@
+Bangkit-Capstone
+The Bangkit Capstone Project machine learning model for Regular Devs (B21-CAP0467)
+
+
+Description:
+the machine learning model was made to classify images of traffic problems below:
+
+0: Damaged road -> road with potholes
+1: Flood -> flooded roads
+2: Good -> roads with no problem at all
+3: Traffic jam -> literally
+
+
+Links:
+The dataset is a tailored dataset, gathered from existing kaggle datasets in the following links:
+- https://www.kaggle.com/prudhvignv/road-damage-classification-and-assessment
+- https://www.kaggle.com/mashrukhzaman/banglanet
+- https://www.kaggle.com/saurabhshahane/roadway-flooding-image-dataset
+
+File of the tailored dataset: 
+https://drive.google.com/drive/folders/17pxXifl5BwvwuxBv7x_0X7WfOpoTDpNX?usp=sharing
