@@ -8,7 +8,7 @@ the machine learning model was made to classify images of traffic problems below
 0: Damaged road -> road with potholes
 1: Flood -> flooded roads
 2: Good -> roads with no problem at all
-3: Traffic jam -> literally
+3: Traffic jam -> road with traffic jam
 
 
 Links:
