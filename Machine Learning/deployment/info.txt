@@ -1,0 +1,4 @@
+The run.py is a flask application with preprocessing and predict function.
+
+This file is necessary for deployment to Cloud Compute Engine, refer to:
+https://towardsdatascience.com/deploying-a-custom-ml-prediction-service-on-google-cloud-ae3be7e6d38f
