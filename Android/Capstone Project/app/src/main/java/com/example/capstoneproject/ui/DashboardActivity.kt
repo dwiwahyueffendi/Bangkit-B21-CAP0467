@@ -1,27 +1,19 @@
-package com.example.capstoneproject.view
+package com.example.capstoneproject.ui
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import com.example.capstoneproject.databinding.ActivityDashboardBinding
 
-/*class HomeFragment : Fragment() {
+class DashboardActivity: AppCompatActivity() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: ActivityDashboardBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setInformasi()
     }
@@ -48,15 +40,14 @@ import androidx.fragment.app.Fragment
                 intent.data = Uri.parse(url)
                 startActivity(intent)
             }
+
+            cvLaporkan.setOnClickListener{
+                startActivity(Intent(applicationContext, ReportActivity::class.java))
+            }
+
+            cvAktivitas.setOnClickListener {
+                startActivity(Intent(applicationContext, HistoryActivity::class.java))
+            }
         }
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            HomeFragment().apply {
-                arguments = Bundle().apply {}
-
-            }
-    }
-}*/
+}

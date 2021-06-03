@@ -20,9 +20,6 @@
     <string name="desc_pusat_informasi_covid19">Temukan Informasi Covid19 Terkini</string>
     <string name="pusar_informasi_vaksinasi">Pusar Informasi Vaksinasi</string>
     <string name="desc_pusat_informasi_vaksinasi">Temukan Informasi Vaksinasi Terkini</string>
-    <string name="jalan_rusak">Jalan Rusak</string>
-    <string name="kemacetan">Kemacetan</string>
-    <string name="banjir">Banjir</string>
     <string name="l_a_p_o_r_i_n">L A P O R i n</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -31,5 +28,7 @@
     <string name="tipe_aduan">Tipe Aduan</string>
     <string name="lokasi">Lokasi</string>
     <string name="keterangan_kejadian">Keterangan Kejadian</string>
+    <string name="laporkan">Laporkan</string>
+    <string name="aktivitas">Aktivitas</string>
 
 </resources>

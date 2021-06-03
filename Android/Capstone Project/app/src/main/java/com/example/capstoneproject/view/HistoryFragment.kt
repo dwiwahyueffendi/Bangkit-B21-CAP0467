@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.capstoneproject.R
 
 
-class HistoryFragment : Fragment() {
+/*class HistoryFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,4 +32,4 @@ class HistoryFragment : Fragment() {
 
             }
     }
-}
+}*/

@@ -7,50 +7,34 @@
     android:layout_margin="8dp"
     tools:context=".view.ReportingFragment">
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="8dp" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/cb_jalan_rusak"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/nama_lengkap" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="24dp"
+            android:text="Jalan Rusak" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/cb_kemacetan"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/tanggal_kejadian" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="24dp"
+            android:text="Kemacetan" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/cb_banjir"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/tipe_aduan" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:text="Banjir" />
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -62,6 +46,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_lokasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/lokasi" />
@@ -77,6 +62,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_keterangan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/keterangan_kejadian" />
@@ -84,12 +70,20 @@
 
     <ImageView
         android:id="@+id/camera"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"
+        android:src="@color/black"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Image" />
+
+    <Button
+        android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next" />

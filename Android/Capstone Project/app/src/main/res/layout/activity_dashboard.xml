@@ -6,7 +6,8 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="8.0dip"
-    tools:context=".view.HomeFragment">
+    android:background="@drawable/bgdashboard"
+    tools:context=".ui.DashboardActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,8 +25,28 @@
             android:fontFamily="@font/pacificoregular"
             android:gravity="center"
             android:text="@string/l_a_p_o_r_i_n"
-            android:textColor="#000"
-            android:textSize="30sp"
+            android:textColor="@color/colorAccent"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_desc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/oswaldmedium"
+            android:gravity="center"
+            android:text="Application optimization of public complaint reporting system "
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -74,7 +95,7 @@
                             android:lineSpacingExtra="3sp"
                             android:text="@string/satu_data"
                             android:textColor="#131314"
-                            android:textSize="18sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -149,7 +170,7 @@
                             android:lineSpacingExtra="3sp"
                             android:text="@string/pusat_informasi_covid19"
                             android:textColor="#131314"
-                            android:textSize="18sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -225,7 +246,7 @@
                             android:lineSpacingExtra="3sp"
                             android:text="@string/pusar_informasi_vaksinasi"
                             android:textColor="#131314"
-                            android:textSize="18sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -285,9 +306,10 @@
         android:weightSum="1">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="90dp"
-            android:layout_height="160dp"
-            android:layout_margin="10dp"
+            android:id="@+id/cv_laporkan"
+            android:layout_width="120dp"
+            android:layout_height="200dp"
+            android:layout_margin="20dp"
             android:layout_weight="0.25"
             android:clickable="true"
             android:focusable="true"
@@ -299,28 +321,28 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_above="@+id/tv_jalan_rusak"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_above="@+id/tv_laporkan"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
-                    android:contentDescription="@string/jalan_rusak"
+                    android:contentDescription="@string/laporkan"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/damagedroad" />
+                    android:src="@drawable/report" />
 
                 <TextView
-                    android:id="@+id/tv_jalan_rusak"
+                    android:id="@+id/tv_laporkan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    android:text="@string/jalan_rusak"
-                    android:textColor="#000"
-                    android:textSize="16sp"
                     android:fontFamily="@font/oswaldmedium"
+                    android:maxLines="1"
+                    android:text="@string/laporkan"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -328,8 +350,9 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="90dp"
-            android:layout_height="160dp"
+            android:id="@+id/cv_aktivitas"
+            android:layout_width="120dp"
+            android:layout_height="200dp"
             android:layout_margin="10dp"
             android:layout_weight="0.25"
             android:clickable="true"
@@ -342,76 +365,33 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_above="@+id/tv_kemacetan"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_above="@+id/tv_aktivitas"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/aktivitas"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/trafficjam"
-                    android:contentDescription="@string/kemacetan" />
+                    android:src="@drawable/history" />
 
                 <TextView
-                    android:id="@+id/tv_kemacetan"
+                    android:id="@+id/tv_aktivitas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    android:text="@string/kemacetan"
-                    android:textColor="#000"
-                    android:textSize="16sp"
                     android:fontFamily="@font/oswaldmedium"
+                    android:maxLines="1"
+                    android:text="@string/aktivitas"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="90dp"
-            android:layout_height="160dp"
-            android:layout_margin="10dp"
-            android:layout_weight="0.25"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_above="@+id/tv_banjir"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="5dp"
-                    android:padding="10dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/flood"
-                    android:contentDescription="@string/banjir" />
-
-                <TextView
-                    android:id="@+id/tv_banjir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    android:text="@string/banjir"
-                    android:textColor="#000"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/oswaldmedium"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
 
     </LinearLayout>
 

@@ -4,12 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
-import com.example.capstoneproject.databinding.ActivityNavigasiBinding
 import com.example.capstoneproject.view.*
-import kotlinx.android.synthetic.main.activity_navigasi.*
 
-class NavigasiActivity : AppCompatActivity() {
-    //private lateinit var auth: FirebaseAuth
+/*class NavigasiActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNavigasiBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,13 +15,16 @@ class NavigasiActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         addFragment(HomeFragment.newInstance())
-        bottomNavigation.show(0)
-        bottomNavigation.add(MeowBottomNavigation.Model(0, R.drawable.ic_home))
-        bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_history))
-        bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_laporan))
-        bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_account))
+        binding.apply {
+            bottomNavigation.show(0)
+            bottomNavigation.add(MeowBottomNavigation.Model(0, R.drawable.ic_home))
+            bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_history))
+            bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_laporan))
+            bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_account))
+        }
 
-        bottomNavigation.setOnClickMenuListener {
+
+        binding.bottomNavigation.setOnClickMenuListener {
             when (it.id){
                 0 -> {
                     replaceFragment(HomeFragment.newInstance())
@@ -53,5 +53,5 @@ class NavigasiActivity : AppCompatActivity() {
         val fragmentTransition = supportFragmentManager.beginTransaction()
         fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
     }
-}
+}*/
 

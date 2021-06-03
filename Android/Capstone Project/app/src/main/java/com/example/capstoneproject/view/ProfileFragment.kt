@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.capstoneproject.R
 
-class ProfileFragment : Fragment() {
+/*class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,4 +29,4 @@ class ProfileFragment : Fragment() {
 
             }
     }
-}
+}*/
