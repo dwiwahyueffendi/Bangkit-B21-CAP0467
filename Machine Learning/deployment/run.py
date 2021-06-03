@@ -15,7 +15,6 @@ import base64
 from PIL import Image
 import io
 from flask import Flask, request
-import numpy as np
 
 model = tf.keras.models.load_model('./mobilenetv3_edit_v1')
 class_names = ['damaged', 'flood', 'good', 'jam']
