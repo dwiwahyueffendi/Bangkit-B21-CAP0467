@@ -16,7 +16,7 @@ from PIL import Image
 import io
 from flask import Flask, request
 
-model = tf.keras.models.load_model('./mobilenetv3_edit_v1')
+model = tf.keras.models.load_model('/home/c3122788/Bangkit-B21-CAP0467/Machine Learning/savedModel')
 class_names = ['damaged', 'flood', 'good', 'jam']
 
 def predicts(data):
@@ -54,6 +54,10 @@ def preprocess(data):
     return new_x
 
 app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello world"
 
 @app.route('/api/predict/img/', methods=['POST'])
 def predict_full_img():
