@@ -22,7 +22,7 @@ class_names = ['damaged', 'flood', 'good', 'jam']
 def predicts(data):
     pred = model.predict(data)
     new_pred = pred.tolist()
-    result = int(np.argmax(prediction))
+    result = int(np.argmax(new_pred))
     class_name = class_names[result]
     percent = float(np.max(pred * 100))
     if result==2:
@@ -60,11 +60,10 @@ def index():
     data = {'status': 200, 'data': 'Hello world!'}
     return json.dumps(data)
 
-@app.route('/api/predict/img/', methods=['POST'])
+@app.route('/predict/img/', methods=['POST'])
 def predict_full_img():
     item = request.json
-    item_dict = json.loads(item, strict=False)
-    encodedItem = item_dict['data'].encode('utf8')
+    encodedItem = item['data'].encode('utf8')
     img_data = preprocess(encodedItem)
     jsonResponse = predicts(img_data)
     return jsonResponse
