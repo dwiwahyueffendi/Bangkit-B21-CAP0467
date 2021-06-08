@@ -16,7 +16,7 @@ from PIL import Image
 import io
 from flask import Flask, request
 
-model = tf.keras.models.load_model('/home/c3122788/Bangkit-B21-CAP0467/Machine Learning/savedModel')
+model = tf.keras.models.load_model('../savedModel')
 class_names = ['damaged', 'flood', 'good', 'jam']
 
 def predicts(data):
