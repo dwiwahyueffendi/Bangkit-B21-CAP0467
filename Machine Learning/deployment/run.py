@@ -31,7 +31,7 @@ def predicts(data):
             'className': class_name,
             'percentage': percent,
             'status': 0,
-            'prediction': 'Invalid',
+            'report': 'Invalid',
         }
     else:
         jsonDict = {
