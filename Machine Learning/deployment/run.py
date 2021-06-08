@@ -57,7 +57,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    data = {'status': 100, 'data': 'Hello world!'}
+    data = {'status': 200, 'data': 'Hello world!'}
     return json.dumps(data)
 
 @app.route('/api/predict/img/', methods=['POST'])
