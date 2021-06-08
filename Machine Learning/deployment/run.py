@@ -55,7 +55,7 @@ def preprocess(data):
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/test', methods=['GET'])
 def index():
     data = {'status': 200, 'data': 'Hello world!'}
     return json.dumps(data)
