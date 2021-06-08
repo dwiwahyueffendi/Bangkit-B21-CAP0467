@@ -55,9 +55,10 @@ def preprocess(data):
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/', methods=['GET'])
 def index():
-    return "Hello world"
+    data = {'status': 100, 'data': 'Hello world!'}
+    return json.dumps(data)
 
 @app.route('/api/predict/img/', methods=['POST'])
 def predict_full_img():
