@@ -1,0 +1,57 @@
+# This is a code documentation of the Google Compute Engine instance of this project
+# We are using the article stated below as reference
+# https://towardsdatascience.com/deploying-a-custom-ml-prediction-service-on-google-cloud-ae3be7e6d38f
+
+
+# 1. Create a VM instance
+gcloud beta compute --project=b21-cap0467 instances create capstone-v2 --zone=asia-southeast2-a --machine-type=e2-medium --subnet=default --network-tier=PREMIUM --maintenance-policy=MIGRATE --service-account=755343573607-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --tags=http-server --image=debian-10-buster-v20210512 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-balanced --boot-disk-device-name=capstone-v2-1 --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
+
+
+# 2. Create a firewall rule allowing port 5000 for ingress
+gcloud compute --project=b21-cap0467 firewall-rules create capstone-v2-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:5000 --source-ranges=0.0.0.0/0 --target-tags=http-server
+
+
+# 3. Access the VM through ssh
+# 4. Update system packages and install the required packages
+sudo apt-get update
+sudo apt-get install git
+sudo apt-get install wget
+
+
+# 5. Download and install Miniconda 
+wget https://repo.anaconda.com/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh
+bash Miniconda3-4.7.10-Linux-x86_64.sh
+
+
+# 5.1. Export the full path of Miniconda to make it executable by the conda command
+export PATH=/home/<your name here>/miniconda3/bin:$PATH
+
+
+# 5.2. Remove the installer
+rm Miniconda3-4.7.10-Linux-x86_64.sh
+
+
+# 5.3. Confirm Miniconda installation
+which conda
+
+
+# 5.4. Create and activate new environment
+conda create -n capstone-v2 python=3.7
+conda activate capstone-v2
+
+# Note: You might need to close and re-open the SSH terminal for changes to take effect after running `conda init`
+
+
+# 6. Clone this repo
+git clone https://github.com/DwiWahyuEffendi/Bangkit-B21-CAP0467
+
+# Note: The required directory from the repo is only `Machine Learning`. You can delete the `Android` and `Cloud` directory.
+
+
+# 6.1. Go to the `deployment` directory and install the requirements
+cd Bangkit-B21-CAP0467/Machine\ Learning/deployment/
+pip install -r requirements.txt
+
+
+# 6.2. Run the app
+python run.py
