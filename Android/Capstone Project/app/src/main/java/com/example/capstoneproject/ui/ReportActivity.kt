@@ -23,11 +23,9 @@ import com.example.capstoneproject.firestore.GlideLoader
 import com.example.capstoneproject.network.RetrofitClient
 import com.example.capstoneproject.utils.Constant
 import com.example.capstoneproject.utils.DateUtils
-import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
@@ -36,7 +34,6 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityReportBinding
     private var mSelectedImage: Uri? = null
     private var mImageURL: String = ""
-    private var baseString64: String = ""
     private var jsonString: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,16 +70,12 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
 
                 R.id.btn_upload_aduan ->{
                     if (mSelectedImage != null){
-                        //FirestoreClass().uploadImagetoCloudStorage(this, mSelectedImage)
-                        //Toast.makeText(this,"Aduan di kirim", Toast.LENGTH_SHORT).show()
+                        FirestoreClass().uploadImagetoCloudStorage(this, mSelectedImage)
+                        Toast.makeText(this,"Aduan di kirim", Toast.LENGTH_SHORT).show()
 
-                        //val intent = Intent(this@ReportActivity, DashboardActivity::class.java)
-                        //startActivity(intent)
-
-                        /*var bitmap = convertImageToBitmap()
-                        binding.ivLaporan.setImageBitmap(bitmap)
-                        baseString64 = convertImageToBase64(bitmap)
-                        val utfString = String(baseString64, charset("UTF-8"))*/
+                        //Comment this intent, for see cek status
+                        val intent = Intent(this@ReportActivity, DashboardActivity::class.java)
+                        startActivity(intent)
 
                         val bitmap = convertImageToBitmap()
                         binding.ivLaporan.setImageBitmap(bitmap)
@@ -93,27 +86,20 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
                         val utfString = String(imgString, charset("UTF-8"))
                         jsonString = "{\"data\": \"$utfString\"}"
 
-                        /*val byteArrayOutputStream = ByteArrayOutputStream()
-                        originalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-                        val imageBytes = byteArrayOutputStream.toByteArray()
-                        val imgString = Base64.encode(imageBytes, Base64.DEFAULT)
-                        val utfString = String(imgString, charset("UTF-8"))
-                        val jsonString = "{\"data\": \"$utfString\"}"*/
-
                         Log.d("jSonString", "jsonString = $jsonString")
 
                         createPost()
                     }
                     else {
-                        //updateImage()
+                        updateImage()
                     }
                 }
             }
         }
     }
 
+
     private fun createPost() {
-        //delay(6000)
 
         RetrofitClient.getReport().createPost(
             data = jsonString
@@ -122,10 +108,16 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
                 call: Call<ReportResponse>,
                 response: Response<ReportResponse>
             ) {
-                val responseText =  "Responde Code : ${response.body()?.data}"
-                        //"Base64 : ${response.body()?.data}"
+                //uncomment this, for for check connection status
+                //val responseText =  "Responde Code : ${response.code()}"
+                val report = response.body()?.report.toString()
 
-                binding.tvStatusCode.text = responseText
+                val userHashMap = HashMap<String, Any>()
+                userHashMap[Constant.STATUS] = report
+                FirestoreClass().updateData(this@ReportActivity, userHashMap)
+
+                //uncomment this, for for check connection status
+                //binding.tvStatusCode.text = responseText
             }
 
             override fun onFailure(call: Call<ReportResponse>, t: Throwable) {
@@ -133,14 +125,6 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
             }
 
         })
-    }
-
-    private fun convertImageToBase64(bitmap: Bitmap): String {
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream)
-        val image = stream.toByteArray()
-        val imgString = Base64.encodeToString(image, Base64.DEFAULT)
-        return imgString
     }
 
     private fun convertImageToBitmap(): Bitmap {
@@ -161,7 +145,7 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
             userHashMap[Constant.TIME] = DateUtils.getNowDate()
         }
 
-        FirestoreClass().updateImageURL(this, userHashMap)
+        FirestoreClass().updateData(this, userHashMap)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

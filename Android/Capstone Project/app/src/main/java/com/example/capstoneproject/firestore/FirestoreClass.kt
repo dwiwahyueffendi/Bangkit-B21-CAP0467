@@ -20,22 +20,6 @@ class FirestoreClass {
 
     private val mFirestore = FirebaseFirestore.getInstance()
 
-    /*fun registerUser(activity: SignUpActivity, userInfo: User){
-        mFirestore.collection("users")
-            .document(userInfo.id)
-            .set(userInfo.id, SetOptions.merge())
-            .addOnSuccessListener {
-                activity.userRegristrationSuccess()
-            }
-            .addOnFailureListener{ e ->
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while regristering user",
-                    e
-                )
-            }
-    }*/
-
     fun getCurrentUserID(): String{
         val currentUser = FirebaseAuth.getInstance().currentUser
 
@@ -123,7 +107,7 @@ class FirestoreClass {
             }
     }
 
-    fun updateImageURL(activity: Activity, userHashMap: HashMap<String, Any>) {
+    fun updateData(activity: ReportActivity, userHashMap: HashMap<String, Any>) {
         mFirestore.collection(Constant.REPORT)
             .document(getCurrentUserID())
             .update(userHashMap)
@@ -141,6 +125,5 @@ class FirestoreClass {
                     }
                 }
             }
-
     }
 }

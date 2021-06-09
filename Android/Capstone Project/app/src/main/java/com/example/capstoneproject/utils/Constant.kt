@@ -16,6 +16,7 @@ object Constant {
     const val LOCATION: String = "lokasi"
     const val IMAGE: String = "gambar"
     const val TIME: String = "waktuKejadian"
+    const val STATUS: String = "status"
 
     fun showImageChooser(activity: Activity){
         val galeryIntent = Intent(

@@ -12,7 +12,6 @@ import com.example.capstoneproject.R
 import com.example.capstoneproject.databinding.ActivitySignUpBinding
 import com.example.capstoneproject.firestore.FirestoreClass
 import com.example.capstoneproject.model.ModelUser
-import com.example.capstoneproject.ui.DashboardActivity
 import com.example.capstoneproject.utils.Constant
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -61,7 +60,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun registerUser() {
         if(validatingRegister()){
-            //val fullName = binding.etSignUpFullName.text.toString().trim { it <= ' '}
+
             val email = binding.etSignUpEmail.text.toString().trim { it <= ' '}
             val password = binding.etSignUpPassword.text.toString().trim { it <= ' '}
 
@@ -88,45 +87,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
                             }
 
-
-                        //val userRef = FirebaseFirestore.getInstance().collection(Constant.REPORT)
-
-                        //val id = firebaseUser.uid
-                        //val fullName = et_sign_up_full_name.text.toString().trim { it <= ' '}
-                        //val email = et_sign_up_email.text.toString().trim { it <= ' '}
-                        //val password = et_sign_up_password.text.toString().trim { it <= ' '}
-
-                        /*val user = ModelUser(
-                            id = firebaseUser.uid,
-                            fullName = binding.etSignUpFullName.text.toString().trim { it <= ' '},
-                            email = binding.etSignUpEmail.text.toString().trim { it <= ' '}
-                        )*/
-
-                        //FirestoreClass().registerUser(this, user)*/
-
-                        //val user = HashMap<String, Any>()
-                        /*user["id"] = firebaseUser.uid
-                        user["fullName"] = fullName
-                        user["email"] = email
-                        user["tipeAduan"] = ""
-                        user["tanggalKejadian"] = ""
-                        user["lokasi"] = ""
-                        user["keterangan"] = ""
-                        user["gambar"] = ""
-                        user["status"] = "Belum Terkonfirmasi"*/
-
-                        /*userRef.add(user).addOnSuccessListener {
-                            Toast.makeText(this, "Registration is Successful !", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
-                        }*/
-
                         Toast.makeText(this, "Pendaftaran Berhasil!", Toast.LENGTH_SHORT).show()
-                        /*Intent(this@SignUpActivity, SignInActivity::class.java).also { intent ->
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
-                        }*/
                     } else {
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                     }

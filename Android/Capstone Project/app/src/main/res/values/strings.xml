@@ -31,5 +31,9 @@
     <string name="laporkan">Laporkan</string>
     <string name="aktivitas">Aktivitas</string>
     <string name="image_report">Image Report</string>
+    <string name="kirim_aduan">Kirim Aduan</string>
+    <string name="upload_gambar">Upload Gambar</string>
+    <string name="laporkan_kejadian">Laporkan Kejadian</string>
+    <string name="gambar_laporan">Gambar Laporan</string>
 
 </resources>

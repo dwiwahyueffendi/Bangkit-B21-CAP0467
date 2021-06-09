@@ -44,7 +44,7 @@
             android:layout_alignParentTop="true"
             android:fontFamily="@font/oswaldmedium"
             android:gravity="center"
-            android:text="Application optimization of public complaint reporting system "
+            android:text="Optimalisasi Aplikasi Sistem Pelaporan Pengaduan Masyarakat"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp"
             android:textStyle="bold" />
