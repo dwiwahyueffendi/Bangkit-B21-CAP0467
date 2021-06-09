@@ -68,13 +68,17 @@ class FirestoreClass {
                 editor.apply()
 
                 when(activity){
-                    is SignInActivity -> activity.userLoggedInSuccess(user)
-                    is SignUpActivity -> activity.userRegisterSucsess(user)
+                    is SignInActivity -> {
+                        activity.userLoggedInSuccess(user)
+                    }
+                    is SignUpActivity -> {
+                        activity.userRegisterSucsess(user)
+                    }
                 }
             }
             .addOnFailureListener {
                 Log.e(activity.javaClass.simpleName,
-                    "Error while register user")
+                    "Gagal Mendaftar!!!")
             }
     }
 

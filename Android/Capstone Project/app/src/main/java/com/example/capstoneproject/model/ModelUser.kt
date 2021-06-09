@@ -8,7 +8,6 @@ class ModelUser (
     var id: String = "",
     var fullName: String = "",
     var email: String = "",
-    val tipeAduan: String = "",
     val waktuKejadian: String = "",
     val lokasi: String = "",
     val keterangan: String = "",

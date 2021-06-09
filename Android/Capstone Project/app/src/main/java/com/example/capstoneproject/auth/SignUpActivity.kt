@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.capstoneproject.R
 import com.example.capstoneproject.databinding.ActivitySignUpBinding
+import com.example.capstoneproject.firestore.FirestoreClass
 import com.example.capstoneproject.model.ModelUser
 import com.example.capstoneproject.ui.DashboardActivity
 import com.example.capstoneproject.utils.Constant
@@ -18,12 +19,11 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivitySignUpBinding
-    private lateinit var modelUser: ModelUser
-    //private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +33,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         val btnLogin: TextView = findViewById(R.id.btn_sign_up_login)
         btnLogin.setOnClickListener(this)
 
-        //modelUser = intent.getParcelableExtra<ModelUser>("REPORT") as ModelUser
-
         binding.btnSignUpRegister.setOnClickListener {
             registerUser()
         }
@@ -43,17 +41,17 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     private fun validatingRegister(): Boolean{
         return when{
             TextUtils.isEmpty(binding.etSignUpFullName.text.toString().trim{ it <= ' '}) -> {
-                binding.etSignUpFullName.error = "Full Name is required"
+                binding.etSignUpFullName.error = "Nama lengkap harus di isi"
                 binding.etSignUpFullName.requestFocus()
                 false
             }
             TextUtils.isEmpty(binding.etSignUpFullName.text.toString().trim{ it <= ' '}) -> {
-                binding.etSignUpFullName.error = "Email is required"
+                binding.etSignUpFullName.error = "Email harus di isi"
                 binding.etSignUpFullName.requestFocus()
                 false
             }
             TextUtils.isEmpty(binding.etSignUpPassword.text.toString().trim{ it <= ' '}) -> {
-                binding.etSignUpPassword.error = "Password must be at least 6 characters"
+                binding.etSignUpPassword.error = "Password minimal terdiri dari 6 karakter"
                 binding.etSignUpPassword.requestFocus()
                 false
             }
@@ -74,18 +72,35 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
                         val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                        val userRef = FirebaseFirestore.getInstance().collection(Constant.REPORT)
+                        val user = ModelUser(
+                            firebaseUser.uid,
+                            binding.etSignUpFullName.text.toString().trim { it <= ' '},
+                            binding.etSignUpEmail.text.toString().trim { it <= ' '}
+                        )
+
+                        FirebaseFirestore.getInstance().collection(Constant.REPORT)
+                            .document(user.id)
+                            .set(user, SetOptions.merge())
+                            .addOnSuccessListener {
+                                FirestoreClass().getUserDetail(this@SignUpActivity)
+                            }
+                            .addOnFailureListener {
+
+                            }
+
+
+                        //val userRef = FirebaseFirestore.getInstance().collection(Constant.REPORT)
 
                         //val id = firebaseUser.uid
                         //val fullName = et_sign_up_full_name.text.toString().trim { it <= ' '}
                         //val email = et_sign_up_email.text.toString().trim { it <= ' '}
                         //val password = et_sign_up_password.text.toString().trim { it <= ' '}
 
-                        val user = ModelUser(
+                        /*val user = ModelUser(
                             id = firebaseUser.uid,
                             fullName = binding.etSignUpFullName.text.toString().trim { it <= ' '},
                             email = binding.etSignUpEmail.text.toString().trim { it <= ' '}
-                        )
+                        )*/
 
                         //FirestoreClass().registerUser(this, user)*/
 
@@ -100,19 +115,18 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                         user["gambar"] = ""
                         user["status"] = "Belum Terkonfirmasi"*/
 
-                        userRef.add(user).addOnSuccessListener {
+                        /*userRef.add(user).addOnSuccessListener {
                             Toast.makeText(this, "Registration is Successful !", Toast.LENGTH_SHORT).show()
                         }
                         .addOnFailureListener {
                             Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
-                        }
+                        }*/
 
-
-                        Toast.makeText(this, "Registration is Successful !", Toast.LENGTH_SHORT).show()
-                        Intent(this@SignUpActivity, SignInActivity::class.java).also { intent ->
+                        Toast.makeText(this, "Pendaftaran Berhasil!", Toast.LENGTH_SHORT).show()
+                        /*Intent(this@SignUpActivity, SignInActivity::class.java).also { intent ->
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
-                        }
+                        }*/
                     } else {
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                     }
@@ -135,7 +149,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         Log.i("email: ", user.email)
         Log.i("fullName", user.fullName)
 
-        val intent = Intent(this@SignUpActivity, DashboardActivity::class.java)
+        val intent = Intent(this@SignUpActivity, SignInActivity::class.java)
         startActivity(intent)
 
     }

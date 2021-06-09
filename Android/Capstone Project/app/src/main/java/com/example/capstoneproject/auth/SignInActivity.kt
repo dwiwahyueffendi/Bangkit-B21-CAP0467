@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.capstoneproject.R
 import com.example.capstoneproject.databinding.ActivitySignInBinding
+import com.example.capstoneproject.firestore.FirestoreClass
 import com.example.capstoneproject.model.ModelUser
 import com.example.capstoneproject.ui.DashboardActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -31,7 +32,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
             if (email.isEmpty()) {
                 binding.apply {
-                    etSigninEmail.error = "Email is required"
+                    etSigninEmail.error = "Email wajib di isi"
                     etSigninEmail.requestFocus()
                     return@setOnClickListener
                 }
@@ -39,7 +40,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
             if (password.isEmpty() || password.length < 6) {
                 binding.apply {
-                    etSigninPassword.error = "Password must be at least 6 characters"
+                    etSigninPassword.error = "Password harus terdiri minimal 6 karakter"
                     etSigninPassword.requestFocus()
                     return@setOnClickListener
                 }
@@ -50,25 +51,15 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
         val btnRegister: TextView = findViewById(R.id.btn_signin_Register)
         btnRegister.setOnClickListener(this)
-
-        binding.btnSigninForgotPassword.setOnClickListener {
-            val intent = Intent(this@SignInActivity, ResetPasswordActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener{ task ->
                 if(task.isSuccessful){
-                    //FirestoreClass().getUserDetail(this)
+                    FirestoreClass().getUserDetail(this@SignInActivity)
 
-                    Toast.makeText(this, "Login is Successful !", Toast.LENGTH_SHORT).show()
-                    Intent(this, DashboardActivity::class.java).also { intent ->
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                    }
+                    Toast.makeText(this, "Login Berhasil!", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }

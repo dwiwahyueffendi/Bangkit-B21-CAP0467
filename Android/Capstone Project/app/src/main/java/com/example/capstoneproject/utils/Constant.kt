@@ -10,11 +10,12 @@ object Constant {
     const val REPORT: String = "report"
     const val MYREPORT_PREFERENCE: String = "myreportpreferences"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
-    const val EMAIL_DATA: String= "email_data"
     const val READ_PERMISSION = 2
     const val PICK_IMAGE = 1
-    const val IMAGE: String = "image"
-
+    const val DESC: String = "keterangan"
+    const val LOCATION: String = "lokasi"
+    const val IMAGE: String = "gambar"
+    const val TIME: String = "waktuKejadian"
 
     fun showImageChooser(activity: Activity){
         val galeryIntent = Intent(

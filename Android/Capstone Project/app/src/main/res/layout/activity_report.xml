@@ -101,4 +101,12 @@
         android:textSize="18sp"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/tv_status_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="TextView" />
+
 </LinearLayout>
