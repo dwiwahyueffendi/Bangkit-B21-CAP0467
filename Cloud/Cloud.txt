@@ -1,6 +1,12 @@
-# This is a code documentation of the Google Compute Engine instance of this project
-# We are using the article stated below as reference
+# This is a code documentation of the Google Compute Engine (GCE) instance of this project.
+# Inside the GCE, we deploy our ML model (image classification) as an API with Flask, 
+# running it in Python environment using Miniconda, 
+# and using Screen to make the service run in the background and always available.
+
+# We are using the article stated below as main reference
 # https://towardsdatascience.com/deploying-a-custom-ml-prediction-service-on-google-cloud-ae3be7e6d38f
+# But unlike the article, we're not using NGINX because it's unnecessary for our case
+# We also use Screen instead of Gunicorn to let the app always run
 
 
 # 1. Create a VM instance
@@ -16,6 +22,7 @@ gcloud compute --project=b21-cap0467 firewall-rules create capstone-v2-http --di
 sudo apt-get update
 sudo apt-get install git
 sudo apt-get install wget
+sudo apt install screen
 
 
 # 5. Download and install Miniconda 
@@ -42,16 +49,33 @@ conda activate capstone-v2
 # Note: You might need to close and re-open the SSH terminal for changes to take effect after running `conda init`
 
 
-# 6. Clone this repo
+# 6. Clone this repo, go to the `deployment` directory, and make the app script executable
 git clone https://github.com/DwiWahyuEffendi/Bangkit-B21-CAP0467
+cd Bangkit-B21-CAP0467/Machine\ Learning/deployment/
+chmod +x run.py
 
 # Note: The required directory from the repo is only `Machine Learning`. You can delete the `Android` and `Cloud` directory.
 
 
-# 6.1. Go to the `deployment` directory and install the requirements
-cd Bangkit-B21-CAP0467/Machine\ Learning/deployment/
+# Note: Do steps 6.1 below if you want to test the app. You can skip this step if it seems unnecessary.
+
+# 6.1. Install the requirements, and run the app
 pip install -r requirements.txt
+./run.py
 
 
-# 6.2. Run the app
-python run.py
+# Note: If you do step 6.1, then you need to stop the app (by clicking CTRL + C) before proceeding to the next step.
+
+# 7. Create a new background terminal window using Screen
+screen -S capstone-v2
+
+
+# 7.1. Now that you are in a Screen background window, install the requirements and then run the app
+pip install -r requirements.txt
+./run.py
+
+
+# 7.2. After the app is running, leave the Screen without terminating it by clicking CTRL + A + D
+
+
+# 8. Check if the service is running by accessing <your_IP_address>:5000/test. If it success, then you can close your ssh.
